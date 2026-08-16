@@ -1,0 +1,2059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+      initial-scale=1.0,
+      maximum-scale=1.0,
+      user-scalable=no">
+
+<title>Team Standing Studio</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    padding-bottom:35px;
+
+    color:#eefcff;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(0,224,255,.12),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 35%,
+            rgba(123,92,255,.10),
+            transparent 30%
+        ),
+        #05080d;
+
+    overflow-x:hidden;
+}
+
+
+/* =====================================================
+   BACKGROUND GRAPHICS
+===================================================== */
+
+body::before{
+    content:"";
+
+    position:fixed;
+
+    width:260px;
+    height:260px;
+
+    left:-150px;
+    top:150px;
+
+    border-radius:50%;
+
+    background:
+        rgba(0,229,255,.08);
+
+    filter:blur(55px);
+
+    pointer-events:none;
+
+    z-index:-1;
+}
+
+body::after{
+    content:"";
+
+    position:fixed;
+
+    width:260px;
+    height:260px;
+
+    right:-150px;
+    bottom:100px;
+
+    border-radius:50%;
+
+    background:
+        rgba(123,92,255,.08);
+
+    filter:blur(55px);
+
+    pointer-events:none;
+
+    z-index:-1;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+    height:64px;
+
+    position:sticky;
+    top:0;
+
+    z-index:1000;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 13px;
+
+    background:
+        rgba(5,8,13,.92);
+
+    backdrop-filter:blur(14px);
+
+    border-bottom:
+        1px solid
+        rgba(0,229,255,.18);
+}
+
+.back-btn{
+
+    width:39px;
+    height:39px;
+
+    border-radius:12px;
+
+    border:
+        1px solid
+        rgba(0,229,255,.25);
+
+    background:
+        rgba(255,255,255,.035);
+
+    color:#59edff;
+
+    font-size:21px;
+
+    cursor:pointer;
+
+    transition:
+        transform .16s ease,
+        background .16s ease;
+}
+
+.back-btn:active{
+
+    transform:
+        scale(.88)
+        rotate(-5deg);
+
+    background:
+        rgba(0,229,255,.12);
+}
+
+
+.header-title{
+
+    position:absolute;
+
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    text-align:center;
+
+    white-space:nowrap;
+}
+
+.header-title strong{
+
+    display:block;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    letter-spacing:1.3px;
+
+    color:#f3fbff;
+}
+
+.header-title span{
+
+    display:block;
+
+    margin-top:3px;
+
+    color:#4ee7f7;
+
+    font-size:6px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+}
+
+
+.header-logo{
+
+    width:auto;
+
+    max-width:78px;
+
+    height:32px;
+
+    object-fit:contain;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main{
+
+    width:100%;
+
+    max-width:620px;
+
+    margin:auto;
+
+    padding:
+        14px 10px 30px;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:17px;
+
+    margin-bottom:13px;
+
+    border-radius:17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(10,36,44,.95),
+            rgba(9,12,19,.98) 55%,
+            rgba(23,15,48,.94)
+        );
+
+    border:
+        1px solid
+        rgba(0,229,255,.17);
+
+    box-shadow:
+        0 16px 40px
+        rgba(0,0,0,.28);
+}
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:90px;
+    height:90px;
+
+    right:-30px;
+    top:-30px;
+
+    border-radius:50%;
+
+    background:
+        rgba(0,229,255,.09);
+
+    filter:blur(3px);
+}
+
+.hero-label{
+
+    color:#50e9fa;
+
+    font-size:7px;
+
+    font-weight:900;
+
+    letter-spacing:1.5px;
+}
+
+.hero h1{
+
+    margin-top:5px;
+
+    font-size:21px;
+
+    font-weight:900;
+
+    letter-spacing:-.4px;
+}
+
+.hero h1 span{
+
+    color:#8f7bff;
+}
+
+.hero p{
+
+    margin-top:6px;
+
+    color:#71818a;
+
+    font-size:8px;
+
+    line-height:1.5;
+}
+
+
+/* =====================================================
+   TEAM NAME CARD
+===================================================== */
+
+.card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:14px;
+
+    margin-bottom:12px;
+
+    border-radius:15px;
+
+    background:
+        rgba(11,16,23,.91);
+
+    border:
+        1px solid
+        rgba(255,255,255,.065);
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.18);
+}
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:3px;
+    height:100%;
+
+    background:
+        linear-gradient(
+            #36e8fa,
+            #8172ff
+        );
+}
+
+.label{
+
+    display:block;
+
+    margin-bottom:7px;
+
+    color:#72dfea;
+
+    font-size:7px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+}
+
+input{
+
+    width:100%;
+
+    height:44px;
+
+    padding:
+        0 12px;
+
+    border-radius:10px;
+
+    outline:none;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    background:
+        rgba(2,5,9,.9);
+
+    color:#fff;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    transition:
+        border-color .18s ease,
+        box-shadow .18s ease;
+}
+
+input:focus{
+
+    border-color:
+        rgba(0,229,255,.55);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(0,229,255,.07);
+}
+
+input::placeholder{
+
+    color:#46545d;
+}
+
+
+/* =====================================================
+   MATCH CARD
+===================================================== */
+
+.match-card{
+
+    opacity:0;
+
+    transform:
+        translateY(18px)
+        scale(.97);
+
+    animation:
+        matchEnter .38s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+@keyframes matchEnter{
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+.match-card.new-match{
+
+    animation:
+        matchPop .48s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
+}
+
+@keyframes matchPop{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            translateY(35px)
+            scale(.92);
+    }
+
+    65%{
+
+        opacity:1;
+
+        transform:
+            translateY(-3px)
+            scale(1.015);
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+.match-heading{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:12px;
+}
+
+.match-number{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+}
+
+.match-icon{
+
+    width:27px;
+    height:27px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:8px;
+
+    color:#061015;
+
+    background:
+        linear-gradient(
+            135deg,
+            #46efff,
+            #8174ff
+        );
+
+    font-size:10px;
+
+    font-weight:1000;
+}
+
+.match-title{
+
+    color:#fff;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    letter-spacing:.5px;
+}
+
+.match-tag{
+
+    color:#52636b;
+
+    font-size:6px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+}
+
+
+/* =====================================================
+   INPUT GRID
+===================================================== */
+
+.input-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr 1fr;
+
+    gap:8px;
+}
+
+.small-box{
+
+    min-width:0;
+}
+
+.small-box input{
+
+    height:42px;
+
+    text-align:center;
+
+    font-size:13px;
+}
+
+.small-box .label{
+
+    text-align:center;
+
+    margin-bottom:6px;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.action-btn{
+
+    position:relative;
+
+    width:100%;
+
+    height:48px;
+
+    margin-top:10px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    font-size:9px;
+
+    font-weight:1000;
+
+    letter-spacing:.7px;
+
+    transition:
+        transform .14s ease,
+        box-shadow .18s ease;
+}
+
+.action-btn::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:70%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.25),
+            transparent
+        );
+
+    transform:skewX(-20deg);
+}
+
+.action-btn:active{
+
+    transform:
+        scale(.965);
+}
+
+.action-btn:active::after{
+
+    animation:
+        buttonShine .45s ease;
+}
+
+@keyframes buttonShine{
+
+    to{
+        left:150%;
+    }
+}
+
+
+.add-btn{
+
+    color:#67ecfb;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(15,32,40,.98),
+            rgba(16,18,31,.98)
+        );
+
+    border:
+        1px dashed
+        rgba(0,229,255,.35);
+
+    box-shadow:
+        0 8px 22px
+        rgba(0,0,0,.15);
+}
+
+.calc-btn{
+
+    color:#05070b;
+
+    background:
+        linear-gradient(
+            135deg,
+            #42ecfb,
+            #8a78ff
+        );
+
+    box-shadow:
+        0 10px 28px
+        rgba(74,207,255,.18);
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+.result-section{
+
+    display:none;
+
+    margin-top:18px;
+
+    opacity:0;
+
+    transform:
+        translateY(25px);
+
+    animation:
+        resultReveal .55s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
+}
+
+@keyframes resultReveal{
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+.result-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:9px;
+}
+
+.result-header strong{
+
+    font-size:9px;
+
+    font-weight:1000;
+
+    letter-spacing:.8px;
+}
+
+.result-header span{
+
+    color:#54e8a6;
+
+    font-size:6px;
+
+    font-weight:900;
+}
+
+
+.result-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:14px;
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(13,27,34,.98),
+            rgba(12,12,24,.98)
+        );
+
+    border:
+        1px solid
+        rgba(82,231,255,.2);
+
+    box-shadow:
+        0 16px 40px
+        rgba(0,0,0,.28);
+}
+
+.result-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:100%;
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #35ebfb,
+            #8174ff
+        );
+}
+
+
+.result-team{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding-bottom:12px;
+
+    margin-bottom:10px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.06);
+}
+
+.result-team-name{
+
+    max-width:62%;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+
+    color:#fff;
+
+    font-size:14px;
+
+    font-weight:900;
+}
+
+.total-big{
+
+    color:#62ecff;
+
+    font-size:23px;
+
+    font-weight:1000;
+
+    text-shadow:
+        0 0 14px
+        rgba(0,229,255,.25);
+}
+
+.total-label{
+
+    color:#60727b;
+
+    font-size:5px;
+
+    letter-spacing:1px;
+
+    text-align:right;
+}
+
+
+.result-stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:6px;
+}
+
+.stat{
+
+    padding:9px 4px;
+
+    text-align:center;
+
+    border-radius:9px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid
+        rgba(255,255,255,.045);
+}
+
+.stat-value{
+
+    display:block;
+
+    color:#f4fcff;
+
+    font-size:13px;
+
+    font-weight:900;
+}
+
+.stat-label{
+
+    display:block;
+
+    margin-top:3px;
+
+    color:#62747d;
+
+    font-size:5px;
+
+    font-weight:900;
+
+    letter-spacing:.6px;
+}
+
+
+/* =====================================================
+   WHATSAPP AREA
+===================================================== */
+
+.poster-area{
+
+    margin-top:14px;
+
+    padding:14px;
+
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(16,31,26,.9),
+            rgba(9,17,18,.96)
+        );
+
+    border:
+        1px solid
+        rgba(37,211,102,.18);
+}
+
+.poster-help{
+
+    margin-bottom:9px;
+
+    color:#9aaba5;
+
+    font-size:8px;
+
+    line-height:1.55;
+
+    text-align:center;
+}
+
+.poster-help strong{
+
+    color:#d8fff0;
+
+    font-weight:900;
+}
+
+.whatsapp-btn{
+
+    width:100%;
+
+    height:47px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:8px;
+
+    border:none;
+
+    border-radius:11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #25d366,
+            #14a951
+        );
+
+    color:#fff;
+
+    font-size:9px;
+
+    font-weight:1000;
+
+    letter-spacing:.5px;
+
+    cursor:pointer;
+
+    text-decoration:none;
+
+    box-shadow:
+        0 9px 25px
+        rgba(37,211,102,.14);
+
+    transition:
+        transform .14s ease;
+}
+
+.whatsapp-btn:active{
+
+    transform:
+        scale(.96);
+}
+
+.whatsapp-icon{
+
+    font-size:17px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:370px){
+
+    .main{
+
+        padding-left:7px;
+        padding-right:7px;
+    }
+
+    .input-grid{
+
+        gap:5px;
+    }
+
+    .small-box input{
+
+        font-size:12px;
+    }
+
+    .result-stats{
+
+        gap:4px;
+    }
+
+    .stat{
+
+        padding:8px 2px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    <button
+        class="back-btn"
+        onclick="history.back()">
+
+        ←
+
+    </button>
+
+    <div class="header-title">
+
+        <strong>
+            TEAM STANDING
+        </strong>
+
+        <span>
+            PROFESSIONAL ESPORTS CALCULATOR
+        </span>
+
+    </div>
+
+    <img
+        src="Logo.png"
+        class="header-logo"
+        alt="Logo">
+
+</header>
+
+
+<main class="main">
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-label">
+        TEAM PERFORMANCE STUDIO
+    </div>
+
+    <h1>
+        Team <span>Standing</span>
+    </h1>
+
+    <p>
+        প্রতিটি ম্যাচের Placement, Kills এবং Booyah
+        লিখে আপনার Team-এর মোট Point হিসাব করুন।
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     TEAM NAME
+===================================================== -->
+
+<section class="card">
+
+    <label
+        class="label"
+        for="teamName">
+
+        TEAM NAME
+
+    </label>
+
+    <input
+        id="teamName"
+        type="text"
+        placeholder="যেমন: BENGAL WARRIORS"
+        autocomplete="off">
+
+</section>
+
+
+<!-- =====================================================
+     MATCHES
+===================================================== -->
+
+<div id="matchesContainer">
+
+    <!-- MATCH 1 -->
+
+    <section class="card match-card">
+
+        <div class="match-heading">
+
+            <div class="match-number">
+
+                <div class="match-icon">
+                    01
+                </div>
+
+                <div class="match-title">
+                    MATCH 1
+                </div>
+
+            </div>
+
+            <div class="match-tag">
+                MATCH DATA
+            </div>
+
+        </div>
+
+
+        <div class="input-grid">
+
+            <!-- PLACEMENT -->
+
+            <div class="small-box">
+
+                <label class="label">
+                    PLACEMENT
+                </label>
+
+                <input
+                    type="number"
+                    class="pos"
+                    min="1"
+                    max="12"
+                    value=""
+                    placeholder="1-12">
+
+            </div>
+
+
+            <!-- KILLS -->
+
+            <div class="small-box">
+
+                <label class="label">
+                    KILLS
+                </label>
+
+                <input
+                    type="number"
+                    class="kills"
+                    min="0"
+                    value=""
+                    placeholder="0">
+
+            </div>
+
+
+            <!-- BOOYAH -->
+
+            <div class="small-box">
+
+                <label class="label">
+                    BOOYAH
+                </label>
+
+                <input
+                    type="number"
+                    class="booyah"
+                    min="0"
+                    value=""
+                    placeholder="0">
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- =====================================================
+     ADD MATCH
+===================================================== -->
+
+<button
+    class="action-btn add-btn"
+    id="addMatchBtn"
+    onclick="addNewMatch()">
+
+    ＋ ADD NEXT MATCH
+
+</button>
+
+
+<!-- =====================================================
+     CALCULATE
+===================================================== -->
+
+<button
+    class="action-btn calc-btn"
+    id="calculateBtn"
+    onclick="calculateTotal()">
+
+    CALCULATE TOTAL POINT
+
+</button>
+
+
+<!-- =====================================================
+     RESULT
+===================================================== -->
+
+<section
+    class="result-section"
+    id="resultSection">
+
+    <div class="result-header">
+
+        <strong>
+            FINAL TEAM RESULT
+        </strong>
+
+        <span>
+            ● CALCULATED
+        </span>
+
+    </div>
+
+
+    <div class="result-card">
+
+        <div class="result-team">
+
+            <div
+                class="result-team-name"
+                id="resultTeamName">
+
+                TEAM
+
+            </div>
+
+            <div>
+
+                <div
+                    class="total-label">
+
+                    TOTAL POINT
+
+                </div>
+
+                <div
+                    class="total-big"
+                    id="totalPoint">
+
+                    0
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="result-stats">
+
+            <div class="stat">
+
+                <span
+                    class="stat-value"
+                    id="resultBooyah">
+
+                    0
+
+                </span>
+
+                <span class="stat-label">
+                    BOOYAH
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span
+                    class="stat-value"
+                    id="resultKills">
+
+                    0
+
+                </span>
+
+                <span class="stat-label">
+                    TOTAL KILLS
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span
+                    class="stat-value"
+                    id="resultPlacement">
+
+                    0
+
+                </span>
+
+                <span class="stat-label">
+                    PLACEMENT PTS
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span
+                    class="stat-value"
+                    id="resultMatches">
+
+                    0
+
+                </span>
+
+                <span class="stat-label">
+                    MATCHES
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         WHATSAPP
+    ================================================== -->
+
+    <div class="poster-area">
+
+        <div class="poster-help">
+
+            <strong>
+                পোস্টার তৈরি করতে চাইলে নিচের বাটনে ক্লিক করুন।
+            </strong>
+
+            <br>
+
+            WhatsApp-এ আপনার Team Name ও প্রয়োজনীয়
+            তথ্য লিখে পোস্টার সম্পর্কে জানাতে পারবেন।
+
+        </div>
+
+
+        <a
+            class="whatsapp-btn"
+            href="https://wa.me/8801988269341?text=Assalamu%20Alaikum%2C%20আমি%20আমার%20Team-এর%20জন্য%20একটি%20Tournament%20Standing%20Poster%20তৈরি%20করতে%20চাই।%20Team%20Name%3A%20"
+            target="_blank"
+            rel="noopener">
+
+            <span class="whatsapp-icon">
+                ◉
+            </span>
+
+            CREATE POSTER VIA WHATSAPP
+
+        </a>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<script>
+
+/* =====================================================
+   POINT SYSTEM
+===================================================== */
+
+const placementPoints = {
+
+    1:12,
+    2:9,
+    3:8,
+    4:7,
+    5:6,
+    6:5,
+    7:4,
+    8:3,
+    9:2,
+    10:1,
+    11:0,
+    12:0
+
+};
+
+
+/* =====================================================
+   MATCH COUNTER
+===================================================== */
+
+let matchCounter = 1;
+
+
+/* =====================================================
+   CREATE MATCH
+===================================================== */
+
+function createMatch(number){
+
+    const section =
+        document.createElement("section");
+
+    section.className =
+        "card match-card new-match";
+
+
+    section.innerHTML = `
+
+        <div class="match-heading">
+
+            <div class="match-number">
+
+                <div class="match-icon">
+                    ${String(number).padStart(2,"0")}
+                </div>
+
+                <div class="match-title">
+                    MATCH ${number}
+                </div>
+
+            </div>
+
+            <div class="match-tag">
+                MATCH DATA
+            </div>
+
+        </div>
+
+
+        <div class="input-grid">
+
+            <div class="small-box">
+
+                <label class="label">
+                    PLACEMENT
+                </label>
+
+                <input
+                    type="number"
+                    class="pos"
+                    min="1"
+                    max="12"
+                    placeholder="1-12">
+
+            </div>
+
+
+            <div class="small-box">
+
+                <label class="label">
+                    KILLS
+                </label>
+
+                <input
+                    type="number"
+                    class="kills"
+                    min="0"
+                    placeholder="0">
+
+            </div>
+
+
+            <div class="small-box">
+
+                <label class="label">
+                    BOOYAH
+                </label>
+
+                <input
+                    type="number"
+                    class="booyah"
+                    min="0"
+                    placeholder="0">
+
+            </div>
+
+        </div>
+
+    `;
+
+    return section;
+}
+
+
+/* =====================================================
+   ADD NEXT MATCH
+===================================================== */
+
+function addNewMatch(){
+
+    matchCounter++;
+
+    const container =
+        document.getElementById(
+            "matchesContainer"
+        );
+
+    const newMatch =
+        createMatch(matchCounter);
+
+    container.appendChild(newMatch);
+
+
+    /*
+       Result নতুন ম্যাচ যোগ করার সময়
+       hide করা হবে যাতে নতুন calculation
+       না হওয়া পর্যন্ত পুরোনো result না থাকে।
+    */
+
+    hideResult();
+
+
+    /*
+       নতুন Match-এর দিকে smooth scroll
+    */
+
+    setTimeout(() => {
+
+        newMatch.scrollIntoView({
+
+            behavior:"smooth",
+
+            block:"center"
+
+        });
+
+    },80);
+
+}
+
+
+/* =====================================================
+   CALCULATE TOTAL
+===================================================== */
+
+function calculateTotal(){
+
+    const teamName =
+        document
+            .getElementById("teamName")
+            .value
+            .trim();
+
+
+    if(!teamName){
+
+        showInputError(
+            document.getElementById("teamName")
+        );
+
+        return;
+
+    }
+
+
+    const matches =
+        document.querySelectorAll(
+            ".match-card"
+        );
+
+
+    let totalKills = 0;
+    let totalBooyah = 0;
+    let totalPlacementPoints = 0;
+    let validMatches = 0;
+
+
+    matches.forEach(match => {
+
+        const pos =
+            parseInt(
+                match
+                    .querySelector(".pos")
+                    .value
+            ) || 0;
+
+        const kills =
+            parseInt(
+                match
+                    .querySelector(".kills")
+                    .value
+            ) || 0;
+
+        const booyah =
+            parseInt(
+                match
+                    .querySelector(".booyah")
+                    .value
+            ) || 0;
+
+
+        /*
+           Placement point
+        */
+
+        const pPoint =
+            placementPoints[pos] || 0;
+
+
+        totalPlacementPoints +=
+            pPoint;
+
+        totalKills +=
+            Math.max(0,kills);
+
+        totalBooyah +=
+            Math.max(0,booyah);
+
+
+        /*
+           Match count:
+           একটি match তখনই counted হবে
+           যদি অন্তত placement / kill / booyah
+           এর কোনো data দেওয়া থাকে।
+        */
+
+        if(
+            pos > 0 ||
+            kills > 0 ||
+            booyah > 0
+        ){
+
+            validMatches++;
+
+        }
+
+    });
+
+
+    /*
+       FINAL POINT
+
+       Placement Points
+       +
+       Kill Points
+
+       Booyah আলাদা statistic।
+    */
+
+    const totalPoint =
+        totalPlacementPoints +
+        totalKills;
+
+
+    /*
+       Result update
+    */
+
+    document.getElementById(
+        "resultTeamName"
+    ).textContent =
+        teamName.toUpperCase();
+
+
+    document.getElementById(
+        "resultBooyah"
+    ).textContent =
+        totalBooyah;
+
+
+    document.getElementById(
+        "resultKills"
+    ).textContent =
+        totalKills;
+
+
+    document.getElementById(
+        "resultPlacement"
+    ).textContent =
+        totalPlacementPoints;
+
+
+    document.getElementById(
+        "resultMatches"
+    ).textContent =
+        validMatches;
+
+
+    document.getElementById(
+        "totalPoint"
+    ).textContent =
+        totalPoint;
+
+
+    /*
+       Show result with animation
+    */
+
+    const result =
+        document.getElementById(
+            "resultSection"
+        );
+
+    result.style.display =
+        "block";
+
+    result.classList.remove(
+        "result-section"
+    );
+
+    void result.offsetWidth;
+
+    result.classList.add(
+        "result-section"
+    );
+
+
+    /*
+       Save Team Maker data
+    */
+
+    localStorage.setItem(
+        "teamMakerData",
+        JSON.stringify({
+
+            name:
+                teamName.toUpperCase(),
+
+            booyah:
+                totalBooyah,
+
+            kills:
+                totalKills,
+
+            placementPoints:
+                totalPlacementPoints,
+
+            matches:
+                validMatches,
+
+            totalPoints:
+                totalPoint
+
+        })
+    );
+
+
+    /*
+       Small button feedback
+    */
+
+    const btn =
+        document.getElementById(
+            "calculateBtn"
+        );
+
+    const oldText =
+        btn.textContent;
+
+    btn.textContent =
+        "✓ POINT CALCULATED";
+
+    setTimeout(() => {
+
+        btn.textContent =
+            oldText;
+
+    },1500);
+
+
+    /*
+       Scroll to result
+    */
+
+    setTimeout(() => {
+
+        result.scrollIntoView({
+
+            behavior:"smooth",
+
+            block:"center"
+
+        });
+
+    },120);
+
+}
+
+
+/* =====================================================
+   HIDE RESULT
+===================================================== */
+
+function hideResult(){
+
+    const result =
+        document.getElementById(
+            "resultSection"
+        );
+
+    result.style.display =
+        "none";
+
+}
+
+
+/* =====================================================
+   INPUT ERROR ANIMATION
+===================================================== */
+
+function showInputError(input){
+
+    input.focus();
+
+    input.animate(
+
+        [
+
+            {
+                transform:
+                    "translateX(0)"
+            },
+
+            {
+                transform:
+                    "translateX(-5px)"
+            },
+
+            {
+                transform:
+                    "translateX(5px)"
+            },
+
+            {
+                transform:
+                    "translateX(-3px)"
+            },
+
+            {
+                transform:
+                    "translateX(0)"
+            }
+
+        ],
+
+        {
+
+            duration:280,
+
+            easing:
+                "ease-out"
+
+        }
+
+    );
+
+}
+
+
+/* =====================================================
+   NUMBER INPUT VALIDATION
+===================================================== */
+
+document.addEventListener(
+    "input",
+    function(event){
+
+        if(
+            event.target.matches(
+                'input[type="number"]'
+            )
+        ){
+
+            let value =
+                parseInt(
+                    event.target.value
+                );
+
+            if(
+                Number.isNaN(value)
+            ){
+                return;
+            }
+
+
+            /*
+               Placement maximum 12
+            */
+
+            if(
+                event.target.classList
+                    .contains("pos")
+            ){
+
+                if(value > 12){
+
+                    event.target.value =
+                        12;
+
+                }
+
+                if(value < 1){
+
+                    event.target.value =
+                        1;
+
+                }
+
+            }
+
+
+            /*
+               Kills / Booyah negative হতে পারবে না
+            */
+
+            if(
+                event.target.classList
+                    .contains("kills") ||
+                event.target.classList
+                    .contains("booyah")
+            ){
+
+                if(value < 0){
+
+                    event.target.value =
+                        0;
+
+                }
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   ENTER KEY
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Enter" &&
+            event.target.tagName === "INPUT"
+        ){
+
+            calculateTotal();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>

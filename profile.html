@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width,
+             initial-scale=1.0,
+             maximum-scale=1.0,
+             user-scalable=no"
+>
+
+<title>Profile | Tournament Studio</title>
+
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+    -webkit-tap-highlight-color:transparent;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    min-height:100vh;
+
+    padding-bottom:92px;
+
+    overflow-x:hidden;
+
+    color:#f5f8ff;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        #07100f;
+}
+
+
+/* =========================================================
+   PREMIUM BACKGROUND
+========================================================= */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-2;
+
+    pointer-events:none;
+
+    background:
+
+        radial-gradient(
+            circle at 15% 8%,
+            rgba(16,185,129,.16),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(59,130,246,.13),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 55% 90%,
+            rgba(139,92,246,.10),
+            transparent 32%
+        );
+}
+
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-1;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(7,16,15,.25),
+            #07100f 82%
+        );
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header{
+
+    height:65px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        rgba(5,15,14,.90);
+
+    border-bottom:
+        1px solid
+        rgba(52,211,153,.14);
+
+    backdrop-filter:
+        blur(16px);
+
+    -webkit-backdrop-filter:
+        blur(16px);
+}
+
+
+.header::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:-1px;
+
+    left:50%;
+
+    width:85px;
+
+    height:1px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        #34d399;
+
+    box-shadow:
+        0 0 14px
+        rgba(52,211,153,.7);
+}
+
+
+.header-center{
+
+    text-align:center;
+}
+
+
+.header-title{
+
+    color:#f3fff9;
+
+    font-size:13px;
+
+    font-weight:900;
+
+    letter-spacing:1.8px;
+}
+
+
+.header-subtitle{
+
+    margin-top:3px;
+
+    color:#58e5b1;
+
+    font-size:6px;
+
+    font-weight:900;
+
+    letter-spacing:1.4px;
+}
+
+
+.header-logo{
+
+    position:absolute;
+
+    right:13px;
+
+    width:auto;
+
+    max-width:65px;
+
+    height:29px;
+
+    object-fit:contain;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main{
+
+    width:100%;
+
+    max-width:620px;
+
+    margin:auto;
+
+    padding:
+        16px
+        11px
+        20px;
+}
+
+
+/* =========================================================
+   PROFILE HERO
+========================================================= */
+
+.profile-hero{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:
+        20px
+        15px
+        17px;
+
+    margin-bottom:13px;
+
+    border-radius:19px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #0c211b,
+            #091715 52%,
+            #111128
+        );
+
+    border:
+        1px solid
+        rgba(52,211,153,.17);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,.34);
+
+    animation:
+        heroIn .55s ease both;
+}
+
+
+/* decorative circle */
+
+.profile-hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:170px;
+
+    height:170px;
+
+    right:-95px;
+
+    top:-90px;
+
+    border-radius:50%;
+
+    border:
+        1px solid
+        rgba(52,211,153,.16);
+
+    box-shadow:
+        0 0 45px
+        rgba(52,211,153,.06);
+}
+
+
+.profile-hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:75px;
+
+    height:2px;
+
+    left:16px;
+
+    bottom:0;
+
+    background:
+        linear-gradient(
+            90deg,
+            #34d399,
+            transparent
+        );
+
+    box-shadow:
+        0 0 12px
+        rgba(52,211,153,.55);
+}
+
+
+.hero-label{
+
+    color:#57e7b0;
+
+    font-size:6px;
+
+    font-weight:900;
+
+    letter-spacing:1.5px;
+
+    margin-bottom:6px;
+}
+
+
+.hero-title{
+
+    font-size:22px;
+
+    font-weight:900;
+
+    line-height:1.1;
+}
+
+
+.hero-title span{
+
+    color:#34d399;
+
+    text-shadow:
+        0 0 14px
+        rgba(52,211,153,.25);
+}
+
+
+.hero-description{
+
+    margin-top:7px;
+
+    color:#748b85;
+
+    font-size:7px;
+
+    line-height:1.55;
+}
+
+
+/* =========================================================
+   PROFILE IDENTITY
+========================================================= */
+
+.identity-card{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    padding:13px;
+
+    margin-bottom:12px;
+
+    border-radius:16px;
+
+    background:
+        rgba(10,25,22,.86);
+
+    border:
+        1px solid
+        rgba(255,255,255,.065);
+
+    box-shadow:
+        0 10px 27px
+        rgba(0,0,0,.25);
+
+    animation:
+        fadeUp .55s .08s ease both;
+}
+
+
+/* =========================================================
+   AVATAR
+========================================================= */
+
+.avatar-box{
+
+    position:relative;
+
+    width:67px;
+
+    height:67px;
+
+    flex-shrink:0;
+
+    cursor:pointer;
+}
+
+
+.avatar-ring{
+
+    position:absolute;
+
+    inset:-3px;
+
+    border-radius:50%;
+
+    background:
+        conic-gradient(
+            #34d399,
+            #38bdf8,
+            #8b5cf6,
+            #34d399
+        );
+
+    animation:
+        rotateRing 7s linear infinite;
+}
+
+
+.avatar-inner{
+
+    position:absolute;
+
+    inset:3px;
+
+    overflow:hidden;
+
+    border-radius:50%;
+
+    background:#081411;
+
+    border:
+        2px solid
+        #081411;
+}
+
+
+.profile-img{
+
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+}
+
+
+/* camera badge */
+
+.avatar-edit{
+
+    position:absolute;
+
+    right:-2px;
+
+    bottom:-1px;
+
+    width:21px;
+
+    height:21px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:
+        #34d399;
+
+    color:#03120d;
+
+    border:
+        2px solid
+        #07100f;
+
+    font-size:9px;
+
+    font-weight:900;
+
+    box-shadow:
+        0 0 10px
+        rgba(52,211,153,.35);
+}
+
+
+/* =========================================================
+   USER SUMMARY
+========================================================= */
+
+.identity-text{
+
+    min-width:0;
+
+    flex:1;
+}
+
+
+.identity-tag{
+
+    color:#57e7b0;
+
+    font-size:6px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+
+    margin-bottom:4px;
+}
+
+
+.identity-name{
+
+    color:#f4fbf8;
+
+    font-size:16px;
+
+    font-weight:900;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+
+.identity-org{
+
+    margin-top:4px;
+
+    color:#71857f;
+
+    font-size:7px;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+
+/* =========================================================
+   INFORMATION SECTION
+========================================================= */
+
+.section-head{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin:
+        17px
+        3px
+        8px;
+
+    animation:
+        fadeUp .5s .15s ease both;
+}
+
+
+.section-head strong{
+
+    color:#e7f5ef;
+
+    font-size:8px;
+
+    font-weight:900;
+
+    letter-spacing:.9px;
+}
+
+
+.section-head span{
+
+    color:#4e7769;
+
+    font-size:6px;
+
+    font-weight:900;
+}
+
+
+/* =========================================================
+   INFO CARD
+========================================================= */
+
+.info-card{
+
+    overflow:hidden;
+
+    border-radius:16px;
+
+    background:
+        rgba(9,22,19,.90);
+
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+
+    box-shadow:
+        0 10px 28px
+        rgba(0,0,0,.27);
+
+    animation:
+        fadeUp .55s .20s ease both;
+}
+
+
+.info-row{
+
+    min-height:58px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+    padding:
+        9px
+        12px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.045);
+
+    transition:
+        background .16s ease,
+        transform .16s ease;
+}
+
+
+.info-row:last-child{
+
+    border-bottom:none;
+}
+
+
+.info-row:active{
+
+    background:
+        rgba(52,211,153,.035);
+
+    transform:
+        translateX(2px);
+}
+
+
+/* icon */
+
+.info-icon{
+
+    width:31px;
+
+    height:31px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:9px;
+
+    color:#55e7b1;
+
+    background:
+        rgba(52,211,153,.07);
+
+    border:
+        1px solid
+        rgba(52,211,153,.10);
+
+    font-size:12px;
+
+    font-weight:900;
+}
+
+
+/* text */
+
+.info-content{
+
+    min-width:0;
+
+    flex:1;
+}
+
+
+.info-label{
+
+    color:#5c756d;
+
+    font-size:6px;
+
+    font-weight:900;
+
+    letter-spacing:.7px;
+
+    text-transform:uppercase;
+
+    margin-bottom:4px;
+}
+
+
+.info-value{
+
+    color:#edf7f3;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+
+/* =========================================================
+   SUPPORT
+========================================================= */
+
+.support-card{
+
+    margin-top:13px;
+
+    padding:13px;
+
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(10,31,24,.95),
+            rgba(9,20,30,.95)
+        );
+
+    border:
+        1px solid
+        rgba(52,211,153,.13);
+
+    animation:
+        fadeUp .55s .28s ease both;
+}
+
+
+.support-title{
+
+    color:#eafff5;
+
+    font-size:9px;
+
+    font-weight:900;
+}
+
+
+.support-text{
+
+    margin-top:4px;
+
+    color:#70857f;
+
+    font-size:6px;
+
+    line-height:1.5;
+}
+
+
+.support-btn{
+
+    width:100%;
+
+    height:39px;
+
+    margin-top:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:6px;
+
+    border-radius:9px;
+
+    text-decoration:none;
+
+    color:#03130d;
+
+    background:
+        linear-gradient(
+            135deg,
+            #34d399,
+            #22c58b
+        );
+
+    font-size:7px;
+
+    font-weight:900;
+
+    letter-spacing:.5px;
+
+    box-shadow:
+        0 7px 18px
+        rgba(34,197,139,.12);
+
+    transition:
+        transform .14s ease,
+        filter .14s ease;
+}
+
+
+.support-btn:active{
+
+    transform:
+        scale(.96);
+
+    filter:
+        brightness(1.08);
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+.logout-btn{
+
+    width:100%;
+
+    height:40px;
+
+    margin-top:10px;
+
+    border-radius:10px;
+
+    border:
+        1px solid
+        rgba(248,113,113,.16);
+
+    background:
+        rgba(127,29,29,.08);
+
+    color:#fb8b8b;
+
+    font-size:7px;
+
+    font-weight:900;
+
+    letter-spacing:.6px;
+
+    cursor:pointer;
+
+    transition:
+        transform .14s ease,
+        background .14s ease;
+}
+
+
+.logout-btn:active{
+
+    transform:
+        scale(.96);
+
+    background:
+        rgba(127,29,29,.18);
+}
+
+
+/* =========================================================
+   BOTTOM NAVIGATION
+
+   SAME STRUCTURE AS HOME
+========================================================= */
+
+.bottom-nav{
+
+    position:fixed;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    height:73px;
+
+    z-index:2000;
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr 1fr;
+
+    align-items:center;
+
+    padding:
+        5px
+        8px
+        calc(
+            5px +
+            env(safe-area-inset-bottom)
+        );
+
+    background:
+        rgba(5,10,19,.94);
+
+    border-top:
+        1px solid
+        rgba(0,229,255,.13);
+
+    backdrop-filter:
+        blur(14px);
+
+    -webkit-backdrop-filter:
+        blur(14px);
+}
+
+
+.nav-item{
+
+    height:58px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:4px;
+
+    border-radius:12px;
+
+    color:#56657a;
+
+    text-decoration:none;
+
+    transition:
+        color .15s ease,
+        background .15s ease,
+        transform .15s ease;
+}
+
+
+.nav-item:active{
+
+    transform:
+        scale(.90);
+}
+
+
+.nav-icon{
+
+    font-size:17px;
+
+    line-height:1;
+}
+
+
+.nav-text{
+
+    font-size:6px;
+
+    font-weight:900;
+
+    letter-spacing:.5px;
+}
+
+
+/*
+   PROFILE ACTIVE
+
+   Navigation structure is exactly:
+
+   PROFILE | HOME | HISTORY
+*/
+
+.nav-item.active{
+
+    color:#34d399;
+
+    background:
+        rgba(52,211,153,.055);
+}
+
+
+.nav-item.active
+.nav-icon{
+
+    text-shadow:
+        0 0 10px
+        rgba(52,211,153,.55);
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:84px;
+
+    z-index:3000;
+
+    min-width:190px;
+
+    padding:
+        10px
+        14px;
+
+    border-radius:10px;
+
+    text-align:center;
+
+    color:#ecfff7;
+
+    background:
+        rgba(7,18,15,.97);
+
+    border:
+        1px solid
+        rgba(52,211,153,.20);
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.35);
+
+    font-size:8px;
+
+    font-weight:700;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transform:
+        translate(-50%,15px);
+
+    transition:
+        opacity .18s ease,
+        transform .18s ease;
+}
+
+
+.toast.show{
+
+    opacity:1;
+
+    transform:
+        translate(-50%,0);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes heroIn{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(12px);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(8px);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+@keyframes rotateRing{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONE
+========================================================= */
+
+@media(max-width:360px){
+
+    .main{
+
+        padding-left:7px;
+        padding-right:7px;
+    }
+
+
+    .profile-hero{
+
+        padding:
+            17px
+            13px
+            15px;
+    }
+
+
+    .hero-title{
+
+        font-size:20px;
+    }
+
+
+    .avatar-box{
+
+        width:61px;
+        height:61px;
+    }
+
+
+    .identity-name{
+
+        font-size:14px;
+    }
+
+
+    .info-value{
+
+        font-size:9px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+<!-- =======================================================
+     HEADER
+======================================================= -->
+
+<header class="header">
+
+    <div class="header-center">
+
+        <div class="header-title">
+            MY PROFILE
+        </div>
+
+        <div class="header-subtitle">
+            TOURNAMENT STUDIO ACCOUNT
+        </div>
+
+    </div>
+
+
+    <img
+        src="Logo.png"
+        class="header-logo"
+        alt="Logo">
+
+</header>
+
+
+
+<!-- =======================================================
+     MAIN
+======================================================= -->
+
+<main class="main">
+
+
+    <!-- ===================================================
+         PROFILE HERO
+    =================================================== -->
+
+    <section class="profile-hero">
+
+        <div class="hero-label">
+            ACCOUNT CENTER
+        </div>
+
+        <div class="hero-title">
+            Your
+            <span>Profile</span>
+        </div>
+
+        <div class="hero-description">
+            Manage your tournament studio account
+            and organisation information.
+        </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         IDENTITY CARD
+    =================================================== -->
+
+    <section class="identity-card">
+
+
+        <div
+            class="avatar-box"
+            onclick="openUploader()">
+
+
+            <div class="avatar-ring"></div>
+
+
+            <div class="avatar-inner">
+
+                <img
+                    id="avatarDisplay"
+                    src="https://via.placeholder.com/125"
+                    class="profile-img"
+                    alt="Profile">
+
+            </div>
+
+
+            <div class="avatar-edit">
+                ✎
+            </div>
+
+        </div>
+
+
+        <div class="identity-text">
+
+            <div class="identity-tag">
+                LOGGED IN ACCOUNT
+            </div>
+
+            <div
+                class="identity-name"
+                id="identityName">
+
+                Loading...
+
+            </div>
+
+            <div
+                class="identity-org"
+                id="identityOrg">
+
+                Loading organisation...
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- Hidden uploader -->
+
+    <input
+        type="file"
+        id="imageUploader"
+        accept="image/*"
+        style="display:none;">
+
+
+
+    <!-- ===================================================
+         ACCOUNT INFORMATION
+    =================================================== -->
+
+    <div class="section-head">
+
+        <strong>
+            ACCOUNT INFORMATION
+        </strong>
+
+        <span>
+            VERIFIED DATA
+        </span>
+
+    </div>
+
+
+    <section class="info-card">
+
+
+        <!-- USER ID -->
+
+        <div class="info-row">
+
+            <div class="info-icon">
+                #
+            </div>
+
+            <div class="info-content">
+
+                <div class="info-label">
+                    User ID
+                </div>
+
+                <div
+                    class="info-value"
+                    id="displayUserID">
+
+                    ...
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ORGANISATION -->
+
+        <div class="info-row">
+
+            <div class="info-icon">
+                ◈
+            </div>
+
+            <div class="info-content">
+
+                <div class="info-label">
+                    Organisation Name
+                </div>
+
+                <div
+                    class="info-value"
+                    id="displayOrgName">
+
+                    ...
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ADMIN -->
+
+        <div class="info-row">
+
+            <div class="info-icon">
+                ◉
+            </div>
+
+            <div class="info-content">
+
+                <div class="info-label">
+                    Admin Name
+                </div>
+
+                <div
+                    class="info-value"
+                    id="displayAdminName">
+
+                    ...
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- EMAIL -->
+
+        <div class="info-row">
+
+            <div class="info-icon">
+                @
+            </div>
+
+            <div class="info-content">
+
+                <div class="info-label">
+                    Email Address
+                </div>
+
+                <div
+                    class="info-value"
+                    id="displayEmail">
+
+                    ...
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ===================================================
+         SUPPORT
+    =================================================== -->
+
+    <section class="support-card">
+
+        <div class="support-title">
+            Need Help?
+        </div>
+
+        <div class="support-text">
+            Contact the tournament administrator
+            if you need assistance with your account.
+        </div>
+
+
+        <a
+            href="https://wa.me/8801988269341"
+            target="_blank"
+            class="support-btn">
+
+            <span>◉</span>
+
+            CONTACT ADMIN ON WHATSAPP
+
+        </a>
+
+    </section>
+
+
+
+    <!-- LOGOUT -->
+
+    <button
+        class="logout-btn"
+        onclick="logoutUser()">
+
+        LOGOUT FROM ACCOUNT
+
+    </button>
+
+
+</main>
+
+
+
+<!-- =======================================================
+     SAME BOTTOM NAVIGATION AS HOME
+======================================================= -->
+
+<nav class="bottom-nav">
+
+
+    <!-- PROFILE -->
+
+    <a
+        href="profile.html"
+        class="nav-item active">
+
+        <div class="nav-icon">
+            ◉
+        </div>
+
+        <div class="nav-text">
+            PROFILE
+        </div>
+
+    </a>
+
+
+    <!-- HOME -->
+
+    <a
+        href="home.html"
+        class="nav-item">
+
+        <div class="nav-icon">
+            ⌂
+        </div>
+
+        <div class="nav-text">
+            HOME
+        </div>
+
+    </a>
+
+
+    <!-- HISTORY -->
+
+    <a
+        href="history.html"
+        class="nav-item">
+
+        <div class="nav-icon">
+            ◷
+        </div>
+
+        <div class="nav-text">
+            HISTORY
+        </div>
+
+    </a>
+
+
+</nav>
+
+
+
+<!-- =======================================================
+     TOAST
+======================================================= -->
+
+<div
+    class="toast"
+    id="toast">
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   LOAD LOGIN DATA
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        loadProfileData();
+
+    }
+);
+
+
+/* =========================================================
+   PROFILE DATA
+========================================================= */
+
+function loadProfileData(){
+
+    /*
+       এগুলো Login page থেকে
+       localStorage-এ save হওয়া
+       একই data key।
+    */
+
+    const userID =
+        localStorage.getItem(
+            "user_uid"
+        ) || "Not Set";
+
+
+    const orgName =
+        localStorage.getItem(
+            "user_org_name"
+        ) || "Not Provided";
+
+
+    const adminName =
+        localStorage.getItem(
+            "user_admin_name"
+        ) || "Not Provided";
+
+
+    const email =
+        localStorage.getItem(
+            "user_email"
+        ) || "Not Provided";
+
+
+    const avatar =
+        localStorage.getItem(
+            "user_avatar"
+        );
+
+
+    /*
+       Account information
+    */
+
+    document.getElementById(
+        "displayUserID"
+    ).textContent =
+        userID;
+
+
+    document.getElementById(
+        "displayOrgName"
+    ).textContent =
+        orgName;
+
+
+    document.getElementById(
+        "displayAdminName"
+    ).textContent =
+        adminName;
+
+
+    document.getElementById(
+        "displayEmail"
+    ).textContent =
+        email;
+
+
+    /*
+       Identity card
+    */
+
+    document.getElementById(
+        "identityName"
+    ).textContent =
+        adminName;
+
+
+    document.getElementById(
+        "identityOrg"
+    ).textContent =
+        orgName;
+
+
+    /*
+       Saved profile image
+    */
+
+    if(avatar){
+
+        document.getElementById(
+            "avatarDisplay"
+        ).src =
+            avatar;
+
+    }
+
+}
+
+
+/* =========================================================
+   OPEN IMAGE UPLOADER
+========================================================= */
+
+function openUploader(){
+
+    document
+        .getElementById(
+            "imageUploader"
+        )
+        .click();
+
+}
+
+
+/* =========================================================
+   PROFILE IMAGE CHANGE
+========================================================= */
+
+document
+    .getElementById(
+        "imageUploader"
+    )
+    .addEventListener(
+        "change",
+        function(event){
+
+            const file =
+                event.target.files[0];
+
+
+            if(!file){
+
+                return;
+
+            }
+
+
+            /*
+               Only image files
+            */
+
+            if(
+                !file.type.startsWith(
+                    "image/"
+                )
+            ){
+
+                showToast(
+                    "Please select an image."
+                );
+
+                return;
+
+            }
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function(e){
+
+                    const image =
+                        e.target.result;
+
+
+                    /*
+                       Preview
+                    */
+
+                    document
+                        .getElementById(
+                            "avatarDisplay"
+                        )
+                        .src =
+                        image;
+
+
+                    /*
+                       Save for next visit
+                    */
+
+                    localStorage.setItem(
+                        "user_avatar",
+                        image
+                    );
+
+
+                    showToast(
+                        "Profile logo updated."
+                    );
+
+                };
+
+
+            reader.readAsDataURL(
+                file
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logoutUser(){
+
+    showToast(
+        "Logging out..."
+    );
+
+
+    setTimeout(
+        function(){
+
+            /*
+               Login/session related key
+               থাকলে এখানে clear করতে পারো।
+
+               User profile data delete করছি না,
+               যাতে আবার login করলে পুরনো
+               profile information পাওয়া যায়।
+            */
+
+            localStorage.removeItem(
+                "currentLoggedInUser"
+            );
+
+
+            window.location.href =
+                "index.html";
+
+        },
+        350
+    );
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+
+function showToast(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(
+            function(){
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            1400
+        );
+
+}
+
+</script>
+
+
+</body>
+</html>
