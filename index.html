@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no">
+
+<title>ORG / Team Login</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+}
+
+body{
+    overflow:hidden;
+    font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color:#fff;
+
+    background:
+        url("bg.png")
+        no-repeat
+        center center /
+        cover;
+
+    position:relative;
+}
+
+
+/* =========================================================
+   DARK CINEMATIC OVERLAY
+========================================================= */
+
+body::before{
+    content:"";
+
+    position:fixed;
+    inset:0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(2,5,14,.18),
+            rgba(2,5,14,.42) 45%,
+            rgba(2,5,14,.88)
+        );
+
+    pointer-events:none;
+
+    z-index:0;
+}
+
+
+/* =========================================================
+   COLOR LIGHT EFFECTS
+========================================================= */
+
+body::after{
+    content:"";
+
+    position:fixed;
+    width:260px;
+    height:260px;
+
+    left:50%;
+    top:22%;
+
+    transform:
+        translate(-50%,-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,229,255,.16),
+            transparent 68%
+        );
+
+    filter:blur(15px);
+
+    pointer-events:none;
+
+    z-index:0;
+
+    animation:
+        ambientGlow 5s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   MAIN WRAPPER
+========================================================= */
+
+.page{
+    position:relative;
+
+    z-index:2;
+
+    width:100%;
+    height:100%;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:space-between;
+
+    padding:
+        0
+        18px
+        18px;
+}
+
+
+/* =========================================================
+   LOGO AREA
+========================================================= */
+
+.logo-box{
+
+    position:relative;
+
+    margin-top:
+        clamp(55px,10vh,95px);
+
+    width:
+        min(245px,70vw);
+
+    display:flex;
+    justify-content:center;
+
+    animation:
+        logoReveal
+        .9s
+        cubic-bezier(.2,.8,.2,1)
+        both;
+}
+
+
+.logo-box::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:130px;
+    height:130px;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,229,255,.15),
+            transparent 70%
+        );
+
+    filter:blur(18px);
+
+    z-index:-1;
+}
+
+
+.logo-box img{
+
+    width:100%;
+    height:auto;
+
+    object-fit:contain;
+
+    filter:
+        drop-shadow(
+            0 10px 25px
+            rgba(0,0,0,.45)
+        );
+}
+
+
+/* =========================================================
+   CENTER CONTENT
+========================================================= */
+
+.center-content{
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    margin-top:auto;
+    margin-bottom:auto;
+}
+
+
+/* =========================================================
+   SMALL LABEL
+========================================================= */
+
+.login-label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    margin-bottom:15px;
+
+    color:
+        rgba(255,255,255,.70);
+
+    font-size:9px;
+
+    font-weight:800;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    animation:
+        fadeUp
+        .7s
+        .15s
+        ease
+        both;
+}
+
+
+.login-label span{
+
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+
+    background:#00e5ff;
+
+    box-shadow:
+        0 0 10px
+        rgba(0,229,255,.9);
+
+    animation:
+        pulse 1.8s infinite;
+}
+
+
+/* =========================================================
+   LOGIN BUTTON
+========================================================= */
+
+.login-btn{
+
+    position:relative;
+
+    width:
+        min(285px,82vw);
+
+    height:58px;
+
+    border:none;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    color:#041019;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00e5ff,
+            #42f5d0
+        );
+
+    font-size:14px;
+
+    font-weight:950;
+
+    letter-spacing:1.4px;
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,229,255,.18),
+
+        0 0 0 1px
+        rgba(255,255,255,.18)
+        inset;
+
+    animation:
+        buttonReveal
+        .8s
+        .25s
+        cubic-bezier(.2,.8,.2,1)
+        both;
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease;
+}
+
+
+.login-btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:80%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            100deg,
+            transparent,
+            rgba(255,255,255,.48),
+            transparent
+        );
+
+    transform:skewX(-20deg);
+
+    animation:
+        shine 3.2s
+        1s
+        infinite;
+}
+
+
+.login-btn::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:1px;
+
+    border-radius:17px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.35);
+
+    pointer-events:none;
+}
+
+
+.login-btn:active{
+
+    transform:
+        scale(.94);
+
+    box-shadow:
+        0 5px 15px
+        rgba(0,229,255,.15);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer-text{
+
+    position:relative;
+
+    color:
+        rgba(255,255,255,.52);
+
+    font-size:8px;
+
+    font-weight:700;
+
+    letter-spacing:1.4px;
+
+    text-align:center;
+
+    text-transform:uppercase;
+
+    animation:
+        fadeUp
+        .7s
+        .45s
+        ease
+        both;
+}
+
+
+.footer-text::before{
+
+    content:"";
+
+    display:block;
+
+    width:38px;
+    height:1px;
+
+    margin:
+        0
+        auto
+        8px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #00e5ff,
+            transparent
+        );
+}
+
+
+/* =========================================================
+   BACKDROP
+========================================================= */
+
+.backdrop{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+        rgba(1,5,12,.58);
+
+    backdrop-filter:
+        blur(7px);
+
+    -webkit-backdrop-filter:
+        blur(7px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:
+        opacity .35s ease;
+
+    z-index:10;
+}
+
+
+.backdrop.active{
+
+    opacity:1;
+
+    pointer-events:auto;
+}
+
+
+/* =========================================================
+   LOGIN SHEET
+========================================================= */
+
+.popup-box{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:0;
+
+    width:
+        min(440px,100%);
+
+    transform:
+        translate(-50%,110%);
+
+    z-index:20;
+
+    padding:
+        12px
+        22px
+        calc(
+            22px +
+            env(safe-area-inset-bottom)
+        );
+
+    border-radius:
+        30px
+        30px
+        0
+        0;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(13,24,39,.97),
+            rgba(5,13,25,.98)
+        );
+
+    border:
+        1px solid
+        rgba(0,229,255,.18);
+
+    box-shadow:
+        0 -20px 60px
+        rgba(0,0,0,.55),
+
+        0 -2px 25px
+        rgba(0,229,255,.05);
+
+    transition:
+        transform
+        .55s
+        cubic-bezier(.16,1,.3,1);
+}
+
+
+.popup-box.active{
+
+    transform:
+        translate(-50%,0);
+}
+
+
+/* =========================================================
+   SHEET HANDLE
+========================================================= */
+
+.sheet-handle{
+
+    width:42px;
+    height:4px;
+
+    border-radius:10px;
+
+    margin:
+        0
+        auto
+        18px;
+
+    background:
+        rgba(255,255,255,.22);
+}
+
+
+/* =========================================================
+   CLOSE
+========================================================= */
+
+.close-btn{
+
+    position:absolute;
+
+    top:17px;
+    right:18px;
+
+    width:32px;
+    height:32px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    color:
+        rgba(255,255,255,.65);
+
+    background:
+        rgba(255,255,255,.06);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    cursor:pointer;
+
+    font-size:13px;
+
+    transition:
+        .18s ease;
+}
+
+
+.close-btn:active{
+
+    transform:
+        scale(.88)
+        rotate(8deg);
+
+    background:
+        rgba(255,255,255,.12);
+}
+
+
+/* =========================================================
+   LOGIN HEADING
+========================================================= */
+
+.popup-title{
+
+    text-align:left;
+
+    padding-right:40px;
+
+    margin-bottom:5px;
+
+    color:#fff;
+
+    font-size:22px;
+
+    font-weight:950;
+
+    letter-spacing:.2px;
+}
+
+
+.popup-title span{
+
+    color:#00e5ff;
+
+    text-shadow:
+        0 0 15px
+        rgba(0,229,255,.25);
+}
+
+
+.popup-subtitle{
+
+    color:#6e8096;
+
+    font-size:8px;
+
+    line-height:1.5;
+
+    margin-bottom:19px;
+}
+
+
+/* =========================================================
+   INPUT GROUP
+========================================================= */
+
+.input-group{
+
+    position:relative;
+
+    margin-bottom:11px;
+}
+
+
+.input-icon{
+
+    position:absolute;
+
+    left:15px;
+    top:50%;
+
+    transform:
+        translateY(-50%);
+
+    color:#5b7187;
+
+    font-size:13px;
+
+    pointer-events:none;
+
+    transition:
+        color .2s ease;
+}
+
+
+input{
+
+    width:100%;
+
+    height:52px;
+
+    padding:
+        0
+        14px
+        0
+        42px;
+
+    border-radius:14px;
+
+    outline:none;
+
+    border:
+        1px solid
+        rgba(255,255,255,.09);
+
+    color:#fff;
+
+    background:
+        rgba(255,255,255,.045);
+
+    font-size:13px;
+
+    font-weight:650;
+
+    transition:
+        border-color .2s ease,
+        background .2s ease,
+        box-shadow .2s ease,
+        transform .2s ease;
+}
+
+
+input::placeholder{
+
+    color:
+        rgba(167,184,202,.48);
+}
+
+
+input:focus{
+
+    border-color:
+        rgba(0,229,255,.55);
+
+    background:
+        rgba(0,229,255,.055);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(0,229,255,.06),
+
+        0 8px 20px
+        rgba(0,0,0,.15);
+}
+
+
+.input-group:focus-within
+.input-icon{
+
+    color:#00e5ff;
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.error-border{
+
+    border-color:
+        #ff5277 !important;
+
+    background:
+        rgba(255,82,119,.06) !important;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(255,82,119,.07),
+
+        0 0 18px
+        rgba(255,82,119,.12) !important;
+
+    animation:
+        shake .35s ease;
+}
+
+
+/* =========================================================
+   ENTER BUTTON
+========================================================= */
+
+.enter-btn{
+
+    position:relative;
+
+    width:100%;
+    height:54px;
+
+    margin-top:5px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    color:#031018;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00e5ff,
+            #42f5d0
+        );
+
+    font-size:12px;
+
+    font-weight:950;
+
+    letter-spacing:1px;
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,229,255,.13);
+
+    transition:
+        transform .16s ease,
+        box-shadow .16s ease;
+}
+
+
+.enter-btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-110%;
+
+    width:70%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.5),
+            transparent
+        );
+
+    transform:skewX(-20deg);
+
+    animation:
+        shine 3s
+        1.2s
+        infinite;
+}
+
+
+.enter-btn:active{
+
+    transform:
+        scale(.96);
+
+    box-shadow:
+        0 4px 13px
+        rgba(0,229,255,.1);
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.enter-btn.loading{
+
+    pointer-events:none;
+
+    color:transparent;
+}
+
+
+.enter-btn.loading::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:17px;
+    height:17px;
+
+    margin:
+        -9px
+        0
+        0
+        -9px;
+
+    border-radius:50%;
+
+    border:
+        2px solid
+        rgba(3,16,24,.25);
+
+    border-top-color:
+        #031018;
+
+    animation:
+        spin .65s linear infinite;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes logoReveal{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(-18px)
+            scale(.94);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes buttonReveal{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(18px)
+            scale(.96);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0);
+    }
+}
+
+
+@keyframes shine{
+
+    0%{
+        left:-120%;
+    }
+
+    35%,100%{
+        left:140%;
+    }
+}
+
+
+@keyframes pulse{
+
+    0%,100%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+    50%{
+        opacity:.45;
+        transform:scale(.72);
+    }
+}
+
+
+@keyframes ambientGlow{
+
+    0%,100%{
+        opacity:.7;
+        transform:
+            translate(-50%,-50%)
+            scale(1);
+    }
+
+    50%{
+        opacity:1;
+        transform:
+            translate(-50%,-50%)
+            scale(1.12);
+    }
+}
+
+
+@keyframes shake{
+
+    0%,100%{
+        transform:translateX(0);
+    }
+
+    25%{
+        transform:translateX(-5px);
+    }
+
+    75%{
+        transform:translateX(5px);
+    }
+}
+
+
+@keyframes spin{
+
+    to{
+        transform:
+            rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   SMALL DEVICES
+========================================================= */
+
+@media(max-height:620px){
+
+    .logo-box{
+        margin-top:35px;
+        width:180px;
+    }
+
+    .login-btn{
+        height:52px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            .01ms !important;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+    <!-- LOGO -->
+    <div class="logo-box">
+        <img src="Logo.png" alt="Tournament Studio">
+    </div>
+
+
+    <!-- CENTER -->
+    <div class="center-content">
+
+        <div class="login-label">
+            <span></span>
+            SECURE ORGANISATION ACCESS
+        </div>
+
+        <button
+            class="login-btn"
+            onclick="togglePopup()">
+
+            ORG / TEAM LOGIN
+
+        </button>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <div class="footer-text">
+        Developed & Hosted By SHUYAIB
+    </div>
+
+</div>
+
+
+<!-- BACKDROP -->
+<div
+    class="backdrop"
+    id="backdrop"
+    onclick="closePopup()">
+</div>
+
+
+<!-- LOGIN SHEET -->
+<div
+    class="popup-box"
+    id="loginBox">
+
+    <div class="sheet-handle"></div>
+
+    <button
+        class="close-btn"
+        onclick="closePopup()"
+        aria-label="Close">
+
+        ✕
+
+    </button>
+
+
+    <div class="popup-title">
+        Welcome <span>Back</span>
+    </div>
+
+    <div class="popup-subtitle">
+        Enter your organisation details to access
+        the Tournament Studio.
+    </div>
+
+
+    <!-- EMAIL -->
+    <div class="input-group">
+
+        <span class="input-icon">
+            @
+        </span>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="ORG / Team Gmail"
+            autocomplete="email">
+
+    </div>
+
+
+    <!-- ORGANISATION -->
+    <div class="input-group">
+
+        <span class="input-icon">
+            ◈
+        </span>
+
+        <input
+            type="text"
+            id="orgName"
+            placeholder="ORG / Team Name"
+            autocomplete="organization">
+
+    </div>
+
+
+    <!-- ADMIN -->
+    <div class="input-group">
+
+        <span class="input-icon">
+            ◉
+        </span>
+
+        <input
+            type="text"
+            id="adminName"
+            placeholder="ORG / Team Admin Name"
+            autocomplete="name">
+
+    </div>
+
+
+    <button
+        class="enter-btn"
+        id="enterBtn"
+        onclick="loginAction()">
+
+        ENTER HOME
+
+    </button>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   POPUP CONTROL
+========================================================= */
+
+const loginBox =
+    document.getElementById("loginBox");
+
+const backdrop =
+    document.getElementById("backdrop");
+
+
+function togglePopup(){
+
+    const isOpen =
+        loginBox.classList.contains("active");
+
+    if(isOpen){
+
+        closePopup();
+
+    }else{
+
+        openPopup();
+
+    }
+}
+
+
+function openPopup(){
+
+    loginBox.classList.add("active");
+
+    backdrop.classList.add("active");
+
+    setTimeout(function(){
+
+        document
+            .getElementById("email")
+            .focus();
+
+    },420);
+}
+
+
+function closePopup(){
+
+    loginBox.classList.remove("active");
+
+    backdrop.classList.remove("active");
+
+}
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(e.key === "Escape"){
+
+            closePopup();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+function loginAction(){
+
+    const email =
+        document.getElementById("email");
+
+    const org =
+        document.getElementById("orgName");
+
+    const admin =
+        document.getElementById("adminName");
+
+    const button =
+        document.getElementById("enterBtn");
+
+
+    const fields =
+        [email,org,admin];
+
+
+    let valid = true;
+
+
+    fields.forEach(function(field){
+
+        if(!field.value.trim()){
+
+            field.classList.add(
+                "error-border"
+            );
+
+            valid = false;
+
+        }else{
+
+            field.classList.remove(
+                "error-border"
+            );
+
+        }
+
+    });
+
+
+    /* EMAIL VALIDATION */
+
+    if(
+        email.value.trim() &&
+        !email.value.includes("@")
+    ){
+
+        email.classList.add(
+            "error-border"
+        );
+
+        valid = false;
+
+    }
+
+
+    if(!valid){
+
+        return;
+
+    }
+
+
+    /* BUTTON LOADING */
+
+    button.classList.add(
+        "loading"
+    );
+
+
+    /*
+        আগের localStorage system
+        ঠিক রাখা হয়েছে।
+    */
+
+    localStorage.setItem(
+        "user_email",
+        email.value.trim()
+    );
+
+
+    localStorage.setItem(
+        "user_org_name",
+        org.value.trim()
+    );
+
+
+    localStorage.setItem(
+        "user_admin_name",
+        admin.value.trim()
+    );
+
+
+    /*
+        Profile / History / অন্যান্য
+        পেজের existing system-এর
+        সাথে compatible রাখার জন্য।
+    */
+
+    localStorage.setItem(
+        "currentLoggedInUser",
+        email.value.trim()
+    );
+
+
+    /* HOME */
+
+    setTimeout(function(){
+
+        window.location.href =
+            "home.html";
+
+    },650);
+
+}
+
+
+/* =========================================================
+   REMOVE ERROR WHILE TYPING
+========================================================= */
+
+[
+    "email",
+    "orgName",
+    "adminName"
+].forEach(function(id){
+
+    const field =
+        document.getElementById(id);
+
+    field.addEventListener(
+        "input",
+        function(){
+
+            this.classList.remove(
+                "error-border"
+            );
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   ENTER KEY LOGIN
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(
+            e.key === "Enter" &&
+            loginBox.classList.contains("active")
+        ){
+
+            loginAction();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
